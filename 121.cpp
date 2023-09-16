@@ -1,23 +1,14 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int max = 0;
-        int temp = prices.back();
-        int temp2 = 0;
-        for (auto it = prices.end() - 2; it >= prices.begin(); it--){
-            //cout << temp << " " << temp2 << " " << max << endl;
-            if (temp > temp2 && temp - *it > max){
-                max = temp - *it;
-            }
-            
-            else if (temp2 - *it > max) {
-                max = temp2 - *it;
-            }
-            
-            
-            if (temp > temp2) temp2 = temp;
-            temp = *it;
+        int max = 0; //maxprofit
+        int minPrice = INT_MAX; //the minimum price up to day i 
+        for (auto i : prices){
+            minPrice = i < minPrice ? i : minPrice;
+            max = (i-minPrice)  > max ? (i-minPrice) : max; 
         }
+
+
         return max;
     }
 };
