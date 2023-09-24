@@ -9,7 +9,27 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+
+//NEW SOLUTION
+
 class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if (!root) return root;
+        TreeNode * left = invertTree(root->left);
+        TreeNode * right = invertTree(root->right);
+
+        root->right = left;
+        root->left = right;
+
+        return root;
+    }
+};
+
+
+//OLD SOLUTION:
+/*class Solution {
 public:
     TreeNode * temp;
     void recursion(TreeNode * n, TreeNode * temp2){
@@ -36,4 +56,4 @@ public:
         
         return temp;
     }
-};
+};*/
